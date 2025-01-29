@@ -2,16 +2,14 @@ Config = {}
 
 Config.Debug = true
 
-Config.Notification = 'ox' -- ox , qb
-Config.Progress = 'ox'     -- ox , qb
+Config.Framework = 'qb'            -- qb , qbox, esx
+Config.Notification = 'ox'         -- ox , qb
+Config.Inventory = 'ox'            -- ox , qb
+Config.Progress = 'ox-circle'      -- ox-normal , ox-circle , qb
+Config.OxCirclePosition = 'bottom' -- only matters if Config.Progress = 'ox-circle'
 
 
--- Will Set The Inv For You
-AddEventHandler("onResourceStart", function()
-    Wait(100)
-    if GetResourceState('ox_inventory') == 'started' then
-        Config.Inventory = 'ox'
-    elseif GetResourceState('qb-inventory') == 'started' then
-        Config.Inventory = 'qb'
-    end
-end)
+-- Nice debug function so you dont need to check if Config.Debug is true on every print
+function dbug(...)
+    if Config.Debug then print('^3[DEBUG]^7', ...) end
+end

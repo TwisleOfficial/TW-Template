@@ -1,4 +1,6 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore
+
+if Config.Framework == 'qb' then QBCore = exports['qb-core']:GetCoreObject() end
 
 Citizen.CreateThread(function() -- Start Thread (Non Loop)
 
