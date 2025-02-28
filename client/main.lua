@@ -2,7 +2,7 @@ if Config.Framework == 'qb' then QBCore = exports['qb-core']:GetCoreObject() end
 
 ---@param duration number # length of progress
 ---@param label string # progress text
----@param anim table # {dict, clip}
+---@param anim? table # {dict, clip}
 local function DoProgress(duration, label, anim)
     if not anim then anim = {} end
 
