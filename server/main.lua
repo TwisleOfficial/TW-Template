@@ -1,5 +1,30 @@
 if Config.Framework == 'qb' then QBCore = exports['qb-core']:GetCoreObject() end
 
+---@param orgin string # orgin where this is being called
+---@param playerId number # center of check
+---@param faildDist number # how bad they failed the check
+local function SendConsoleAlert(orgin, playerId, faildDist)
+  print(
+    '\n^8[CHEATING-ALERT]^7 ' .. orgin .. ' Distance Check Failed!',
+    '\n^8[CHEATING-ALERT]^7 Player Name: ' .. GetPlayerName(playerId),
+    '\n^8[CHEATING-ALERT]^7 ' .. GetPlayerIdentifierByType(playerId, 'license'),
+    '\n^8[CHEATING-ALERT]^7 Over Vaild Distance By ' .. faildDist .. ' units!'
+  )
+end
+
+---@param playerId number # Player Id To Check
+---@param coords vector3 # center of check
+---@param radius number # radius of check
+local function DistanceCheck(playerId, coords, radius)
+  local dist = #(GetEntityCoords(GetPlayerPed(playerId)) - coords)
+
+  if dist > radius then
+    return false
+  else
+    return true
+  end
+end
+
 ---@param src number # player source
 ---@param duration number # Length of noti
 ---@param title string # noti title can be empty string for qb
@@ -98,6 +123,8 @@ end)
 RegisterNetEvent('nameOFscript:server:nameOFwhathappens', function ()
   -- Templete netevent
 end)
+
+
 
 AddEventHandler('onResourceStart', function(resourceName)
   if (GetCurrentResourceName() ~= resourceName) then return end
