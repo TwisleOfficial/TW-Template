@@ -4,6 +4,8 @@ if Config.Framework == 'qb' then QBCore = exports['qb-core']:GetCoreObject() end
 ---@param label string # progress text
 ---@param anim table # {dict, clip}
 local function DoProgress(duration, label, anim)
+    if not anim then anim = {} end
+
     if Config.Progress == 'qb' then
         QBCore.Functions.Progressbar(label, label, duration, false, true, {
                 disableMovement = true,
